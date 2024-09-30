@@ -1,39 +1,54 @@
-import React from 'react';
-import './App.scss';
-import './index.scss';
-
 import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Link,
   BrowserRouter as Router,
-  Routes,
-  Route
+  Routes
 } from "react-router-dom";
 
-import Menu from './Menu/Menu';
+
+import './App.scss';
+import Footer from './Footer/Footer';
 import Hero from './Hero/Hero';
 import HomePage from './HomePage/HomePage';
-import Footer from './Footer/Footer';
+import Menu from './Menu/Menu';
 import AboutPage from './AboutPage/AboutPage';
 import LoginPage from './LoginPage/LoginPage';
-import BudgetChart from './BudgetChart/BudgetChart';
-
 
 function App() {
-  return (
-    <Router>
-      <Menu />
-      <Hero/>
-      <div className="mainContainer">
-        <Routes>
-        <Route path="/about" element={<AboutPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/budget" element={<BudgetChart />} />
 
-        </Routes>
-      </div>
-      <Footer />
-     
-    </Router>
+
+  const router = createBrowserRouter([
+      {
+          path: '/',
+          element: <HomePage/>
+      },
+      {
+          path: '/about',
+          element: <AboutPage/>
+      },
+      {
+          path: '/login',
+          element: <LoginPage/>
+      }
+  ]);
+
+  return (
+      <Router>
+          <Menu/>
+          <Hero/>
+          <div className="mainContainer">
+              <Routes>
+                  <Route path='/about' element={ <AboutPage/> } />
+                  <Route path='/login' element= { <LoginPage/> }/>
+                  <Route path='/' element= { <HomePage/> } />
+              </Routes>
+              {/* <RouterProvider router={ router }/> */}
+
+          </div>
+          <Footer/>
+      </Router>
   );
 }
 
